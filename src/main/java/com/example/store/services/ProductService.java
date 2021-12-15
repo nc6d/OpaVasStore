@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * @author auserox (Opanasiuk B.)
@@ -22,4 +23,13 @@ public class ProductService {
 
         return listOfProducts;
     }
+    public Product getProductById(String id) {
+        Predicate<Product> byId = p -> p.getId().equals(id);
+        return filterProducts(byId);
+    }
+
+    public Product filterProducts(Predicate<Product> strategy) {
+        return getAllProducts().stream().filter(strategy).findFirst().orElse(null);
+    }
+
 }

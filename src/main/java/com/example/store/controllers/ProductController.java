@@ -30,9 +30,9 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public String getProductById(Model model, @PathVariable("productId"), String productId) {
+    public String getProductById(Model model, String productId) {
 
-//        model.addAttribute("products", productService.getProductById);
+        model.addAttribute("products", productService.getProductById(productId));
         return "product";
     }
 }
