@@ -1,16 +1,20 @@
 package com.example.store.users;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 public class Account {
-    @NonNull private long id;
-    @NonNull private String name;
-    @NonNull private int age;
-    @NonNull private Date registrationDate;
-    @NonNull private String email;
+    private final long id;
+    private String name;
+    private int age;
+    private Date registrationDate;
+    private String email;
+    private boolean isAdmin;
 
 }
