@@ -1,39 +1,23 @@
 package com.example.store.controllers;
 
-import com.example.store.models.Product;
-import com.example.store.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.store.models.ProductModel;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author auserox (Opanasiuk B.)
  */
 @Controller
-@RequestMapping("/products")
+@RequestMapping(value = "product")
 public class ProductController {
-    @Autowired
-    private ProductService productService;
 
-    @GetMapping("/all")
-    public String getAllProducts(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
-
-        return "product_all";
-
-    }
-
-    @GetMapping("/{productId}")
-    public String getProductById(Model model, String productId) {
-
-        model.addAttribute("products", productService.getProductById(productId));
-        return "product";
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(ModelMap modelMap) {
+        ProductModel productModel = new ProductModel();
+        modelMap.put("products", productModel.findAll());
+        return "product/index";
     }
 }
 
