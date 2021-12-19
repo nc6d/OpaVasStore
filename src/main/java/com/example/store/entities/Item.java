@@ -1,0 +1,22 @@
+package com.example.store.entities;
+
+import lombok.Data;
+
+/**
+ * @author auserox (Opanasiuk B.)
+ */
+@Data
+public class Item {
+
+    private Product product;
+    private int quantity;
+
+    public Item() {
+    }
+
+    public Item(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+}
