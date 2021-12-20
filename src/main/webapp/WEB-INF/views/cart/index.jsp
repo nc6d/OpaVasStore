@@ -14,8 +14,6 @@
         <th>Option</th>
         <th>Id</th>
         <th>Name</th>
-        <th>Photo</th>
-        <th>Description</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Sub Total</th>
@@ -30,17 +28,14 @@
                     onclick="return confirm('Are you sure?')">Remove</a></td>
             <td>${item.product.id }</td>
             <td>${item.product.name }</td>
-            <td><img src="${pageContext.request.contextPath }/resources/http://learningprogramming.net/wp-content/uploads/java/spring_mvc/${item.product.photo }"
-                     width="200"></td>
-            <td style="max-width: 200px">${item.product.description}</td
             <td>${item.product.price }</td>
             <td>${item.quantity }</td>
             <td>${item.product.price * item.quantity }</td>
         </tr>
     </c:forEach>
     <tr>
-        <td colspan="6" align="right">Sum</td>
-        <td>${total }</td>
+        <td colspan="5" align="right">Sum</td>
+        <td>${total}</td>
     </tr>
 </table>
 <br>
