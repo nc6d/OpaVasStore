@@ -1,11 +1,12 @@
-package com.example.store.controllers;
+package com.store.controllers;
 
-import com.example.store.entities.Item;
-import com.example.store.models.ProductModel;
+import com.store.entities.Item;
+import com.store.models.ProductModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class CartController {
             }
             session.setAttribute("cart", cart);
         }
-        return "redirect:/cart/index";
+        return "redirect:/product";
     }
 
     @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)

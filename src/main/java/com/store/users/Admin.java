@@ -1,4 +1,4 @@
-package com.example.store.users;
+package com.store.users;
 
 /**
  * @author auserox (Opanasiuk B.)

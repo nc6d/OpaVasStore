@@ -1,16 +1,18 @@
-package com.example.store.controllers;
+package com.store.controllers;
 
-import com.example.store.models.ProductModel;
+import com.store.models.ProductModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author auserox (Opanasiuk B.)
  */
 @Controller
-@RequestMapping(value = "product")
+@RequestMapping( "/product")
 public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET)
