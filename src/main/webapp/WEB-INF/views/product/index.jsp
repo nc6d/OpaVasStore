@@ -19,14 +19,15 @@
         <th>Price</th>
         <th>Buy</th>
     </tr>
-    <c:forEach var="product" items="${products }">
+    <c:forEach var="product" items="${products}">
         <tr>
             <td>${product.id }</td>
             <td>${product.name }</td>
             <td>${product.description}</td>
             <td>${product.price }</td>
             <td align="center">
-                <a href="${pageContext.request.contextPath }/cart/buy/${product.id}">Buy Now</a>
+                <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"
+                   onclick="return alert('${product.name} was added to a cart!')">Buy Now</a>
             </td>
         </tr>
     </c:forEach>
