@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+
 /**
  * @author auserox (Opanasiuk B.)
  */
@@ -14,7 +15,7 @@ public class Product {
     private String id;
     private String name;
     private String description;
-    private int price;
+    private int price;  
 
     public Product() {
     }

@@ -6,10 +6,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Product Page</title>
 </head>
+
 <body>
 
 <h3>Products Page</h3>
+<div><a href="${pageContext.request.contextPath }/">Home</a></div>
 <div><a href="${pageContext.request.contextPath }/cart/index">My Cart</a></div>
+<div><a href="${pageContext.request.contextPath }/product/new_product">New Product</a></div>
 
 <table cellpadding="2" cellspacing="2" border="1">
     <tr>
@@ -27,11 +30,18 @@
             <td>${product.price }</td>
             <td align="center">
                 <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"
-                   onclick="return alert('${product.name} was added to a cart!')">Buy Now</a>
+                   onclick="return cartAlert()">Buy Now</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 
 </body>
+<script>
+    function cartAlert() {
+        if (confirm('Item was added to a cart! Go to cart?')) {
+            window.open("${pageContext.request.contextPath }/cart/index")
+        }
+    }
+</script>
 </html>

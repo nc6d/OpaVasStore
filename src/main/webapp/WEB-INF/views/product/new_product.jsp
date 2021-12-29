@@ -15,31 +15,24 @@
 </head>
 <body>
 <div class="container mt-50 mb-5">
-    <h1>Registration</h1>
-    <form action="/new_product" method="post">
+    <form action="${pageContext.request.contextPath}/product/create" method="post">
         <label>
-            <input type="text" name="id" placeholder="Enter name" class="form-control">
+            <input type="text" name="id" placeholder="Enter id" class="form-control">
         </label><br>
         <label>
-            <input type="text" name="surname" placeholder="Enter surname" class="form-control">
+            <input type="text" name="name" placeholder="Enter name" class="form-control">
         </label><br>
         <label>
-            <input type="text" name="birthdate" placeholder="Enter birthdate" class="form-control">
+            <input type="text" name="description" placeholder="Enter description" class="form-control">
         </label><br>
         <label>
-            <input type="text" name="sex" placeholder="Enter sex" class="form-control">
+            <input type="text" name="price" placeholder="Enter price" class="form-control">
         </label><br>
-        <label>
-            <input type="text" name="email" placeholder="Enter email" class="form-control">
-        </label><br>
-        <label>
-            <input type="text" name="password" placeholder="Enter password" class="form-control">
-        </label><br>
-        <button type="submit" class="btn btn-success"> Register</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
-</div>
-<div th:insert="blocks/footer :: footer"></div>
+
+<div><a href="${pageContext.request.contextPath }/product">Product List</a></div>
 
 </body>
 </html>
