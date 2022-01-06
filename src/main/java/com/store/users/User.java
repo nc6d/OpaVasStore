@@ -3,7 +3,7 @@ package com.store.users;
 /**
  * @author auserox (Opanasiuk B.)
  */
-public class Admin {
+public class User {
     int id;
     
 }
