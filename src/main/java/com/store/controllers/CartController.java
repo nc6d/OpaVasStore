@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -51,7 +50,8 @@ public class CartController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String removeAll(HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
-        cart.clear();
+
+        if (cart != null) cart.clear();
         return "redirect:/cart/index";
     }
 

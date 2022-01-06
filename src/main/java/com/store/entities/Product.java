@@ -15,10 +15,12 @@ public class Product {
     private String id;
     private String name;
     private String description;
-    private int price;  
+    private int price;
+
 
     public Product() {
     }
+
 
     public Product(String id, String name, String description, int price) {
         this.id = id;
