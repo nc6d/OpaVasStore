@@ -21,7 +21,7 @@
     <!-- Jumbotron -->
     <div class="p-5 text-center bg-image"
          style="
-          background-image: url('https://www.rabstol.net/uploads/gallery/comthumb/229/rabstol_net_flags_66.jpg') ;
+          background-image: url('https://eskipaper.com/images/gradient-wallpapers-1.jpg') ;
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center;

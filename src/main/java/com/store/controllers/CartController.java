@@ -23,7 +23,10 @@ public class CartController {
     ProductRepository productRepository;
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
-    public String index() {
+    public String index(HttpSession session) {
+        if (session.getAttribute("cart") == null) {
+            return "cart/index_empty_cart";
+        }
         return "cart/index";
     }
 
@@ -71,6 +74,24 @@ public class CartController {
             }
         }
         return -1;
+    }
+
+    @RequestMapping(value = "increase/{id}", method = RequestMethod.GET)
+    private String increase(HttpSession session, @PathVariable("id") String id) {
+        List<Item> cart = (List<Item>) session.getAttribute("cart");
+        int index = this.exists(id, cart);
+        int quantity = cart.get(index).getQuantity() + 1;
+        cart.get(index).setQuantity(quantity);
+        return "redirect:/cart/index";
+    }
+
+    @RequestMapping(value = "decrease/{id}", method = RequestMethod.GET)
+    private String decrease(HttpSession session, @PathVariable("id") String id) {
+        List<Item> cart = (List<Item>) session.getAttribute("cart");
+        int index = this.exists(id, cart);
+        int quantity = cart.get(index).getQuantity() - 1;
+        cart.get(index).setQuantity(quantity);
+        return "redirect:/cart/index";
     }
 
 }

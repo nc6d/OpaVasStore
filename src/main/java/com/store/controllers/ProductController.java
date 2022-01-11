@@ -23,8 +23,6 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
-//        ProductModel productModel = new ProductModel();
-//        modelMap.put("products", productModel.findAll());
         modelMap.put("products", repository.findAll());
         return "product/index";
     }
@@ -42,7 +40,16 @@ public class ProductController {
                             @RequestParam String description,
                             @RequestParam int price) {
         modelMap.put("products", repository.save(new Product(id, name, description, price)));
+
         return "redirect:/product";
     }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") String id) {
+        repository.deleteById(id);
+        return "redirect:/product";
+    }
+
+
 }
 

@@ -11,59 +11,67 @@
 
 <jsp:include page="../header.jsp"></jsp:include>
 
-<div class="container d-flex justify-content-center mt-50 mb-50">
-    <div class="row">
-        <div class="col-md-10">
-            <c:forEach var="product" items="${products}">
-            <div class="card card-body">
+    <div class=" mt-5 container-fluid justify-content-center">
+        <c:forEach var="product" items="${products}">
+        <div class="card card-body">
 
-                <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
-                    <div class="mr-2 mb-3 mb-lg-0"><img src="https://i.imgur.com/5Aqgz7o.jpg" width="150" height="150"
-                                                        alt=""></div>
-                    <div class="media-body">
-                        <h6 class="media-title font-weight-semibold"><a href="#" data-abc="true">${product.name}</a>
-                        </h6>
-                        <p class="mb-3">${product.description} </p>
-                    </div>
-                    <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
-                        <h3 class="mb-0 font-weight-semibold">$${product.price}</h3>
-                        <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i>
-                            <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"
-                               onclick="return cartAlert()"
-                                style="
-                                color: white;
-                                text-decoration: none;">Buy Now</a>
-                        </button>
-                    </div>
+            <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                    <%--                    <div class="mr-2 mb-3 mb-lg-0"><img src="${product.img}" width="150" height="150"--%>
+                    <%--                                                        alt=""></div>--%>
+                <div class="media-body">
+                    <h2 class="media-title font-weight-semibold"><a data-abc="true">${product.name}</a></h2>
+                    <p class="mb-3">${product.description} </p>
                 </div>
-                </c:forEach>
+                <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                    <h3 class="mb-3 font-weight-semibold">$${product.price}</h3>
+                    <div style="display: inline-block">
+                        <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"
+                           onclick="return cartAlert()"
+                           role="button"
+                           class="btn btn-outline-dark mb-4 btn-block"
+                        >Buy Now</a>
+                        <a href="${pageContext.request.contextPath }/product/delete/${product.id}"
+                           onclick="return alert('${product.name} was succesfully deleted from a products list')"
+                           role="button"
+                           class="btn btn-outline-dark mb-4 btn-block"
+                        >Delete</a>
+                        <a href="#"
+                           role="button"
+                           class="btn btn-outline-dark mb-4 btn-block"
+                        >Edit</a>
+
+                    </div>
+
+                </div>
             </div>
+
         </div>
+        </c:forEach>
     </div>
-</div>
 
 
-<table cellpadding="2" cellspacing="2" border="1">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Buy</th>
-    </tr>
-    <c:forEach var="product" items="${products}">
-        <tr>
-            <td>${product.id }</td>
-            <td>${product.name }</td>
-            <td>${product.description}</td>
-            <td>${product.price }</td>
-            <td align="center">
-                <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"
-                   onclick="return cartAlert()">Buy Now</a>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
+
+<%--<table cellpadding="2" cellspacing="2" border="1">--%>
+<%--    <tr>--%>
+<%--        <th>Id</th>--%>
+<%--        <th>Name</th>--%>
+<%--        <th>Description</th>--%>
+<%--        <th>Price</th>--%>
+<%--        <th>Buy</th>--%>
+<%--    </tr>--%>
+<%--    <c:forEach var="product" items="${products}">--%>
+<%--        <tr>--%>
+<%--            <td>${product.id }</td>--%>
+<%--            <td>${product.name }</td>--%>
+<%--            <td>${product.description}</td>--%>
+<%--            <td>${product.price }</td>--%>
+<%--            <td align="center">--%>
+<%--                <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"--%>
+<%--                   onclick="return cartAlert()">Buy Now</a>--%>
+<%--            </td>--%>
+<%--        </tr>--%>
+<%--    </c:forEach>--%>
+<%--</table>--%>
 
 </body>
 <script>

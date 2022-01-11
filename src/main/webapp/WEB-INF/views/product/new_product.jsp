@@ -16,7 +16,7 @@
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
 
-<div class="p-5 text-center">
+<div class="p-5 mt-5 text-center">
     <form action="${pageContext.request.contextPath}/product/create" method="post">
 <div class="row mb-4">
     <div class="col">

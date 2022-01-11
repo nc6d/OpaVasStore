@@ -16,7 +16,7 @@
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <button
                     class="navbar-toggler"
@@ -35,8 +35,7 @@
                         <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath }/">Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath }/product">Products
-                            page</a>
+                        <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath }/product">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath }/cart/index">My Cart</a>
@@ -44,7 +43,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath }/product/new_product">New
                             Product</a>
-                    </li>
                     </li>
                     <li class="navbar-nav mr-auto">
                         <a class="nav-link" href="#">Login</a>
