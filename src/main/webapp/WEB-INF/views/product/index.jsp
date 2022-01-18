@@ -35,7 +35,7 @@
                            role="button"
                            class="btn btn-outline-dark mb-4 btn-block"
                         >Delete</a>
-                        <a href="#"
+                        <a href="${pageContext.request.contextPath}/product/editing/${product.id}"
                            role="button"
                            class="btn btn-outline-dark mb-4 btn-block"
                         >Edit</a>
@@ -48,8 +48,6 @@
         </div>
         </c:forEach>
     </div>
-
-
 
 <%--<table cellpadding="2" cellspacing="2" border="1">--%>
 <%--    <tr>--%>
@@ -75,16 +73,11 @@
 
 </body>
 <script>
-    <c:forEach var="product" items="${products}">
-
     function cartAlert() {
         if (confirm('Item was added to a cart! Go to cart?')) {
             window.open("${pageContext.request.contextPath }/cart/index")
         }
     }
-
-    </c:forEach>
-
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

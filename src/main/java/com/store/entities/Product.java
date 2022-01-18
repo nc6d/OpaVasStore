@@ -1,29 +1,31 @@
 package com.store.entities;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
 
 
 /**
  * @author auserox (Opanasiuk B.)
  */
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 @Document("products") 
 public class Product {
-    private String id;
+
+    @Id
+    @Setter(AccessLevel.NONE)
+    private ObjectId id;
     private String name;
     private String description;
-    private int price;
+    private double price;
 
-
-    public Product() {
-    }
-
-
-    public Product(String id, String name, String description, int price) {
-        this.id = id;
+    public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
         this.price = price;

@@ -14,8 +14,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableMongoRepositories(basePackages = "com.store.repository")
 public class StoreApplication implements WebMvcConfigurer, CommandLineRunner {
 
-	@Autowired
 	ProductRepository repository;
+
+	@Autowired
+	public void setRepository(ProductRepository repository) {
+		this.repository = repository;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(StoreApplication.class, args);
@@ -24,9 +28,9 @@ public class StoreApplication implements WebMvcConfigurer, CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		repository.deleteAll();
-		repository.save(new Product("01", "MacBook Pro 13 2020", "Best lap for a Spring coding", 5000));
-		repository.save(new Product("02", "Acer Nitro 3", "Nice combination of price and quality - perfect choice if you both like gaming an coding", 3200));
-		repository.save(new Product("03", "Dell Vostro 14212", "Pretty cool lap for a basic coding", 1500));
+		repository.save(new Product("MacBook Pro 13 2020", "Best lap for a Spring coding", 5000));
+		repository.save(new Product("Acer Nitro 3", "Nice combination of price and quality - perfect choice if you both like gaming an coding", 3200));
+		repository.save(new Product("Dell Vostro 14212", "Pretty cool lap for a basic coding", 1500));
 
 
 //		System.out.println("Products found with findAll():");

@@ -2,6 +2,7 @@ package com.store.controllers;
 
 import com.store.entities.Item;
 import com.store.repository.ProductRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,21 +20,25 @@ import java.util.List;
 @RequestMapping(value = "cart")
 public class CartController {
 
-    @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    public void setRepository(ProductRepository repository) {
+        this.productRepository = repository;
+    }
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(HttpSession session) {
-        if (session.getAttribute("cart") == null) {
+        if (session.getAttribute("cart") == null || ((List<Item>)session.getAttribute("cart")).size() == 0 ) {
             return "cart/index_empty_cart";
         }
         return "cart/index";
     }
 
     @RequestMapping(value = "buy/{id}", method = RequestMethod.GET)
-    public String buy(@PathVariable("id") String id, HttpSession session) {
+    public String buy(@PathVariable("id") ObjectId id, HttpSession session) {
         if (session.getAttribute("cart") == null) {
-            List<Item> cart = new ArrayList<Item>();
+            List<Item> cart = new ArrayList<>();
             cart.add(new Item(productRepository.findById(id).get(), 1));
             session.setAttribute("cart", cart);
         } else {
@@ -53,13 +58,12 @@ public class CartController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String removeAll(HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
-
         if (cart != null) cart.clear();
         return "redirect:/cart/index";
     }
 
     @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
-    public String remove(@PathVariable("id") String id, HttpSession session) {
+    public String remove(@PathVariable("id") ObjectId id, HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         int index = this.exists(id, cart);
         cart.remove(index);
@@ -67,9 +71,9 @@ public class CartController {
         return "redirect:/cart/index";
     }
 
-    private int exists(String id, List<Item> cart) {
+    private int exists(ObjectId id, List<Item> cart) {
         for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getProduct().getId().equalsIgnoreCase(id)) {
+            if (cart.get(i).getProduct().getId().equals(id)) {
                 return i;
             }
         }
@@ -77,7 +81,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "increase/{id}", method = RequestMethod.GET)
-    private String increase(HttpSession session, @PathVariable("id") String id) {
+    private String increase(HttpSession session, @PathVariable("id") ObjectId id) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         int index = this.exists(id, cart);
         int quantity = cart.get(index).getQuantity() + 1;
@@ -86,7 +90,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "decrease/{id}", method = RequestMethod.GET)
-    private String decrease(HttpSession session, @PathVariable("id") String id) {
+    private String decrease(HttpSession session, @PathVariable("id") ObjectId id) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         int index = this.exists(id, cart);
         int quantity = cart.get(index).getQuantity() - 1;
