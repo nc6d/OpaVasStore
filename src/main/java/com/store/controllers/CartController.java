@@ -5,6 +5,7 @@ import com.store.repository.ProductRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,23 +21,22 @@ import java.util.List;
 @RequestMapping(value = "cart")
 public class CartController {
 
-    ProductRepository productRepository;
-
     @Autowired
-    public void setRepository(ProductRepository repository) {
-        this.productRepository = repository;
-    }
+    ProductRepository productRepository;
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(HttpSession session) {
-        if (session.getAttribute("cart") == null || ((List<Item>)session.getAttribute("cart")).size() == 0 ) {
+        if (session.getAttribute("cart" ) == null ||
+                ((List<Item>)session.getAttribute("cart")).size() == 0) {
             return "cart/index_empty_cart";
         }
         return "cart/index";
     }
 
     @RequestMapping(value = "buy/{id}", method = RequestMethod.GET)
-    public String buy(@PathVariable("id") ObjectId id, HttpSession session) {
+    public String buy(@PathVariable("id") ObjectId id, HttpSession session, ModelMap modelMap) {
+        modelMap.put("products", productRepository.findAll());
+
         if (session.getAttribute("cart") == null) {
             List<Item> cart = new ArrayList<>();
             cart.add(new Item(productRepository.findById(id).get(), 1));
@@ -52,12 +52,18 @@ public class CartController {
             }
             session.setAttribute("cart", cart);
         }
-        return "redirect:/product";
+        return "product/modals/open_modal";
+    }
+
+    @RequestMapping(value = "remove_confirmation", method = RequestMethod.GET)
+    public String removeConfirmation() {
+        return "cart/modals/modal_remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String removeAll(HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
+
         if (cart != null) cart.clear();
         return "redirect:/cart/index";
     }

@@ -6,9 +6,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <title>Cart Page</title>
 </head>
-<body>
+<body onload="showModal()">
 
-<jsp:include page="../header.jsp"></jsp:include>
+<jsp:include page="../../header.jsp"></jsp:include>
 
 
 <div class="px-4 px-lg-0 mt-5">
@@ -73,10 +73,9 @@
                   </td>
                   <td class="border-0 align-middle">
                     <a
-                            href="${pageContext.request.contextPath }/cart/remove/${item.product.id }"
+                            href="${pageContext.request.contextPath }/cart/remove_id_confirmation"
                             class="btn btn-dark rounded-pill py-2 btn-block"
-<%--                            onclick="return confirm('Are you sure?')"--%>
-                    >Remove
+                            onclick="return confirm('Are you sure?')">Remove
                     </a>
                   </td>
                 </tr>
@@ -97,7 +96,7 @@
           <div>
             <a href="#" class="btn btn-dark btn-block rounded-pill py-2 btn-block w-50 mb-3">Proceed to
               checkout</a>
-            <a href="${pageContext.request.contextPath }/cart/remove_confirmation"
+            <a href="${pageContext.request.contextPath }/cart/remove_all_confirmation"
 <%--               onclick="return confirm('Are you sure?')"--%>
                class="btn btn-dark btn-block rounded-pill py-2 btn-block w-50 mb-3">Clear my cart</a>
           </div>
@@ -107,7 +106,49 @@
     </div>
   </div>
 </div>
+<!-- Modal -->
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Removing product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+
+      <div class="modal-footer">
+        <a type="button" class="btn btn-outline-secondary btn-block"  data-bs-dismiss="modal" aria-label="Close">Back</a>
+        <a type="button" class="btn btn-dark btn-block" href="${pageContext.request.contextPath }/cart/remove/${item.product.id}">Remove</a>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </body>
+<script>
+    function showModal() {
+        $(document).ready(function () {
+            $('#exampleModal').modal("show")
+        });
+
+    }
+</script>
+
+<%--BS scripts--%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
 </html>

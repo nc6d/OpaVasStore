@@ -26,7 +26,6 @@
                     <h3 class="mb-3 font-weight-semibold">$${product.price}</h3>
                     <div style="display: inline-block">
                         <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"
-                           onclick="return cartAlert()"
                            role="button"
                            class="btn btn-outline-dark mb-4 btn-block"
                         >Buy Now</a>
@@ -35,7 +34,7 @@
                            role="button"
                            class="btn btn-outline-dark mb-4 btn-block"
                         >Delete</a>
-                        <a href="${pageContext.request.contextPath}/product/editing/${product.id}"
+                        <a href="${pageContext.request.contextPath }/product/editing/${product.id}"
                            role="button"
                            class="btn btn-outline-dark mb-4 btn-block"
                         >Edit</a>
@@ -49,35 +48,19 @@
         </c:forEach>
     </div>
 
-<%--<table cellpadding="2" cellspacing="2" border="1">--%>
-<%--    <tr>--%>
-<%--        <th>Id</th>--%>
-<%--        <th>Name</th>--%>
-<%--        <th>Description</th>--%>
-<%--        <th>Price</th>--%>
-<%--        <th>Buy</th>--%>
-<%--    </tr>--%>
-<%--    <c:forEach var="product" items="${products}">--%>
-<%--        <tr>--%>
-<%--            <td>${product.id }</td>--%>
-<%--            <td>${product.name }</td>--%>
-<%--            <td>${product.description}</td>--%>
-<%--            <td>${product.price }</td>--%>
-<%--            <td align="center">--%>
-<%--                <a href="${pageContext.request.contextPath }/cart/buy/${product.id}"--%>
-<%--                   onclick="return cartAlert()">Buy Now</a>--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
-<%--</table>--%>
 
 </body>
 <script>
+    <c:forEach var="product" items="${products}">
+
     function cartAlert() {
         if (confirm('Item was added to a cart! Go to cart?')) {
             window.open("${pageContext.request.contextPath }/cart/index")
         }
     }
+
+    </c:forEach>
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

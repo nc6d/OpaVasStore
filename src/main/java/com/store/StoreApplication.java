@@ -1,6 +1,7 @@
-package com.store.repository;
+package com.store;
 
 import com.store.entities.Product;
+import com.store.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
