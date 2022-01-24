@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  */
 
 public enum Role {
-    ADMIN(Set.of(Permission.READ, Permission.WRITE)),
+    ADMIN(Set.of(Permission.READ, Permission.WRITE, Permission.MODERATE)),
     USER(Set.of(Permission.READ));
 
 

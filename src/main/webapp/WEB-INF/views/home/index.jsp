@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>OpaVasStore</title>
@@ -30,7 +32,9 @@
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.4);">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
-                    <h1 class="mb-3">OpaVasStore</h1>
+                    <sec:authorize access="isAuthenticated()">
+                    <h1 class="mb-3">Welcome, @<c:out value="${username}" default="guest" /></h1>
+                    </sec:authorize>
                     <a class="btn btn-outline-light btn-lg" href="${pageContext.request.contextPath }/product"
                        role="button">Go Shopping</a>
                 </div>

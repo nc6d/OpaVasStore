@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
   <title>OpaVasStore</title>
@@ -37,16 +38,34 @@
           <li class="nav-item active">
             <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath }/product">Products</a>
           </li>
+          <sec:authorize access="isAuthenticated()">
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath }/cart/index">My Cart</a>
           </li>
-          <li class="nav-item">
+          </sec:authorize>
+
+            <li class="nav-item">
+              <sec:authorize access="hasAuthority('ADMIN')">
             <a class="nav-link" href="${pageContext.request.contextPath }/product/new_product">New
               Product</a>
+              </sec:authorize>
           </li>
+
+          <sec:authorize access="isAnonymous()">
           <li class="navbar-nav mr-auto">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}auth/login">Login</a>
           </li>
+          </sec:authorize>
+          <sec:authorize access="isAnonymous()">
+            <li class="navbar-nav mr-auto">
+              <a class="nav-link" href="${pageContext.request.contextPath}auth/register_page">Register</a>
+            </li>
+          </sec:authorize>
+          <sec:authorize access="isAuthenticated()">
+          <li class="navbar-nav mr-auto">
+            <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
+          </li>
+          </sec:authorize>
         </ul>
       </div>
     </div>

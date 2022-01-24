@@ -5,7 +5,8 @@ package com.store.entities;
  */
 public enum Permission {
     READ("users:read"),
-    WRITE("users:write");
+    WRITE("users:write"),
+    MODERATE("users:moderate");
 
     private final String permission;
 
